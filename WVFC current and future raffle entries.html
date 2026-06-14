@@ -1,0 +1,409 @@
+<!--
+create the code to produce a web page for all of the entries into 4 equal coding blocks that can be placed in order into 1 file
+only use ascii characters
+had to replace facebook.com with this https://www.facebook.com/profile/100064817680090/search/?q=
+and then use textpad recorder to append the raffle number.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="US-ASCII">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raffle Tracker Dashboard</title>
+    <style>
+        :root {
+            --bg-color: #f4f6f9;
+            --card-bg: #ffffff;
+            --primary: #2563eb;
+            --text-main: #1f2937;
+            --text-muted: #6b7280;
+            --border: #e5e7eb;
+            --accent: #f59e0b;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        header {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        h1 { margin: 0 0 10px 0; color: var(--primary); }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .badge {
+            background: var(--primary);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.85em;
+        }
+        .date { font-size: 0.85em; color: var(--text-muted); font-weight: 500; }
+        .prize { font-size: 1.05em; font-weight: 600; margin-bottom: 15px; flex-grow: 1; }
+        .btn {
+            display: inline-block;
+            text-align: center;
+            background: var(--bg-color);
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            padding: 8px 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9em;
+            transition: all 0.2s ease;
+        }
+        .btn:hover { background: var(--primary); color: white; }
+        .pending { color: var(--text-muted); font-style: italic; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Raffle Listings Dashboard</h1>
+            <p>Track prizes, dates, and active listings links</p>
+        </header>
+        <div class="grid">
+            <!-- Raffle 5229 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5229</span><span class="date">6/5/26</span></div>
+                <div class="prize">Pick 1 Choice (Value of $150.00)</div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5229" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5230 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5230</span><span class="date">6/5/26</span></div>
+                <div class="prize">PlayStation 5 Package (Console, Twin Charging Station, Cooling Stand)</div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5230" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5231 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5231</span><span class="date">6/5/26</span></div>
+                <div class="prize">LETS PICK 1 ONLY VALUE OF $150.00</div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5231" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5232 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5232</span><span class="date">6/6/26</span></div>
+                <div class="prize">Stihl MS162 16 Inch Chainsaw</div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5232" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5233 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5233</span><span class="date">6/5/26</span></div>
+                <div class="prize">Pokemon MIX BUNDLE</div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5233" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5234 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5234</span><span class="date">6/6/26</span></div>
+                <div class="prize">$150.00 Gift Card (Choice for Cruise or Take Cash!)</div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5234" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5235 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5235</span><span class="date">6/6/26</span></div>
+                <div class="prize">$500.00 Gift Card to Myerstown Shed and Fence</div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5235" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5236 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5236</span><span class="date">6/7/26</span></div>
+                <div class="prize">$150.00 Worth of $30 Lottery Tickets</div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5236" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5237 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5237</span><span class="date">6/7/26</span></div>
+                <div class="prize">EUHOMY 25 Bottle Wine Cooler Refrigerator</div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5237" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5238 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5238</span><span class="date">6/8/26</span></div>
+                <div class="prize">$150.00 Pick 1 Only</div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5238" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5239 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5239</span><span class="date">6/8/26</span></div>
+                <div class="prize">Sekey Heavy Duty Beach Wagon (9 Inch Big Wheels)</div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5239" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5240 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5240</span><span class="date">6/8/26</span></div>
+                <div class="prize">Entire Book of $50 Lottery Tickets</div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5240" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5241 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5241</span><span class="date">6/8/26</span></div>
+                <div class="prize">Canpsky 2 Pack Lightweight Portable Camping Beach Chairs</div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5241" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5242 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5242</span><span class="date">6/9/26</span></div>
+                <div class="prize">16 1lb Packages of Hamburger from Hi-Way Meat</div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5242" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5243 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5243</span><span class="date">6/9/26</span></div>
+                <div class="prize">$150.00 Worth of $50 Lottery Tickets</div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5243" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5244 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5244</span><span class="date">6/9/26</span></div>
+                <div class="prize">$150.00 Gift Card to Amazon</div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5244" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5245 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5245</span><span class="date">6/9/26</span></div>
+                <div class="prize">2 - 2 oz Silver Coins</div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5245" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5246 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5246</span><span class="date">6/9/26</span></div>
+                <div class="prize">ALL NEW GAME $150.00 in $10 Lottery Tickets</div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5246" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5247 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5247</span><span class="date">6/9/26</span></div>
+                <div class="prize">iscream Genuine ICEE Brand Counter-Top Slushie Maker</div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5247" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5248 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5248</span><span class="date">6/10/26</span></div>
+                <div class="prize">Home Hero 54-Piece Stainless Steel Kitchen Utensils Set</div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5248" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5249 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5249</span><span class="date">6/10/26</span></div>
+                <div class="prize">Mynt Shiatsu Neck and Back Massager for Chair</div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5249" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5250 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5250</span><span class="date">6/11/26</span></div>
+                <div class="prize">AMAZING MYSTERY PRIZE (Click to see item)</div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5250" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5251 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5251</span><span class="date">6/11/26</span></div>
+                <div class="prize">ALL NEW GAME $150.00 Worth $5 Lottery Tickets</div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5251" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5252 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5252</span><span class="date">6/11/26</span></div>
+                <div class="prize">400L Double Decker Wagon with Tailgate (560lbs Heavy Duty)</div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5252" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5253 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5253</span><span class="date">6/12/26</span></div>
+                <div class="prize">LETS PICK 1 ONLY VALUE OF $150.00 (Hershey or Knoebels)</div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5253" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5254 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5254</span><span class="date">6/12/26</span></div>
+                <div class="prize">$150.00 Gift Card to Amazon</div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5254" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5255 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5255</span><span class="date">6/12/26</span></div>
+                <div class="prize">Anything Sports Complete Golf Simulator Enclosure Package</div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5255" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5256 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5256</span><span class="date">6/12/26</span></div>
+                <div class="prize">$150.00 Gift Card to Hi-Way Meats</div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5256" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5257 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5257</span><span class="date">6/12/26</span></div>
+                <div class="prize">Stanley Mini Cooler, 40oz Tumbler, $120 Lottery Tickets and $125 Gift Cards</div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5257" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5258 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5258</span><span class="date">6/13/26</span></div>
+                <div class="prize">$150.00 PICK 1 ONLY </div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5258" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5259 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5259</span><span class="date">6/12/26</span></div>
+                <div class="prize">LEGO Orange Cat</div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5259" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5260 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5260</span><span class="date">6/13/26</span></div>
+                <div class="prize">Yeti Patriotic Roadie 15 $200 lottery tickets $200 gift cards</div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5260" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5261 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5261</span><span class="date">6/13/26</span></div>
+                <div class="prize">$150.00 GIFT CARD TO DISNEY </div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5261" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5262 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5262</span><span class="date pending">TBD</span></div>
+                <div class="prize pending">Awaiting details...</div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5262" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5263 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5263</span><span class="date pending">TBD</span></div>
+                <div class="prize pending">Awaiting details...</div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5263" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5264 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5264</span><span class="date pending">TBD</span></div>
+                <div class="prize pending">Awaiting details...</div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5264" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5265 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5265</span><span class="date pending">TBD</span></div>
+                <div class="prize pending">Awaiting details...</div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5265" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5266 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5266</span><span class="date pending">TBD</span></div>
+                <div class="prize pending">Awaiting details...</div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5266" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5267 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5267</span><span class="date pending">TBD</span></div>
+                <div class="prize pending">Awaiting details...</div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5267" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5268 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5268</span><span class="date pending">TBD</span></div>
+                <div class="prize pending">Awaiting details...</div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5268" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5269 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5269</span><span class="date pending">TBD</span></div>
+                <div class="prize pending">Awaiting details...</div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5269" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5270 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5270</span><span class="date pending">TBD</span></div>
+                <div class="prize pending">Awaiting details...</div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5270" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5271 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5271</span><span class="date pending">TBD</span></div>
+                <div class="prize pending">Awaiting details...</div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5271" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5272 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5272</span><span class="date pending">TBD</span></div>
+                <div class="prize pending">Awaiting details...</div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5272" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5273 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5273</span><span class="date pending">TBD</span></div>
+                <div class="prize pending">Awaiting details...</div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5273" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5274 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5274</span><span class="date pending">TBD</span></div>
+                <div class="prize pending">Awaiting details...</div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5274" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5275 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5275</span><span class="date pending">TBD</span></div>
+                <div class="prize pending">Awaiting details...</div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5275" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5276 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5276</span><span class="date pending">TBD</span></div>
+                <div class="prize pending">Awaiting details...</div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5276" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5277 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5277</span><span class="date pending">TBD</span></div>
+                <div class="prize pending">Awaiting details...</div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5277" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5278 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5278</span><span class="date pending">TBD</span></div>
+                <div class="prize pending">Awaiting details...</div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5278" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5279 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5279</span><span class="date pending">TBD</span></div>
+                <div class="prize pending">Awaiting details...</div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5279" target="_blank" class="btn">View Link</a>
+            </div>
+            <!-- Raffle 5280 -->
+            <div class="card">
+                <div class="card-header"><span class="badge">#5280</span><span class="date pending">TBD</span></div>
+                <div class="prize pending">Awaiting details...</div>
+                <a href="https://www.facebook.com/profile/100064817680090/search/?q=5280" target="_blank" class="btn">View Link</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
