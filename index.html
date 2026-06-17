@@ -1,38 +1,11 @@
-<!--
-5274
-5275
-5276
-5277
-5278
-5279
-5280
-5281
-5282
-5283
-5284
-5285
-5286
-5287
-5288
-5289
-5290
-5291
-5292
-5293
-5294
-5295
-5296
-5297
-5298
-5299
-5300 
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Raffle Listings Dashboard</title>
+    <!-- Auto refresh every 10 minutes (600 seconds) -->
+    <meta http-equiv="refresh" content="600">
     <style>
         :root {
             --bg-color: #f4f6f9;
@@ -55,17 +28,45 @@
             margin: 0 auto;
         }
         header {
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             text-align: center;
         }
-        h1 { margin: 0 0 10px 0; color: var(--primary); }
+        header h1 { margin: 0 0 4px 0; color: var(--primary); }
+        header p { margin: 2px 0; font-size: 0.9em; }
+        .instructions { font-size: 0.85em; color: var(--accent); font-weight: 600; margin-top: 4px; }
+
+        /* Search Layout Area */
+        .search-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+        .search-input {
+            width: 100%;
+            max-width: 400px;
+            padding: 8px 12px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 0.95em;
+        }
+        .clear-btn {
+            padding: 8px 16px;
+            background-color: var(--text-muted);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9em;
+        }
+        .clear-btn:hover { background-color: var(--text-main); }
+
+        /* Grid set to fit exactly 4 cards across layout view */
         .grid {
             display: grid;
-            /* Explicitly forces exactly 4 cards per row on standard screens */
             grid-template-columns: repeat(4, 1fr);
             gap: 20px;
         }
-        /* Fallback breakdown for tablets and mobile devices */
         @media (max-width: 1024px) { .grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
 
@@ -78,7 +79,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            height: auto; /* Shrinks or expands dynamically based on content size */
+            height: auto; /* Dynamically shrinks/expands grid rows based on contents */
         }
         .card-header {
             display: flex;
@@ -86,8 +87,9 @@
             align-items: center;
             margin-bottom: 12px;
         }
+        /* Blue background for ID with leading # symbol applied */
         .badge {
-            background: var(--primary); /* Blue background for Raffle ID */
+            background: var(--primary);
             color: white;
             padding: 4px 8px;
             border-radius: 4px;
@@ -96,7 +98,7 @@
         }
         .date { font-size: 0.85em; color: var(--text-muted); font-weight: 500; }
 
-        /* Auto-expands vertically to accommodate long Prize descriptions */
+        /* Prize layout expands dynamically to hold longer data */
         .prize {
             font-size: 1.05em;
             font-weight: 600;
@@ -105,38 +107,53 @@
             word-wrap: break-word;
         }
 
-        /* Styles for missing info: non-bold, smaller, and centered text */
-        .pending {
-            font-weight: normal;
-            font-size: 0.85em;
-            color: var(--text-muted);
-            text-align: center;
+        /* Centered, smaller, non-bold text for awaiting conditions */
+        .awaiting-text {
             display: block;
-            width: 100%;
-            margin: 10px 0;
+            text-align: center;
+            font-weight: normal;
+            font-size: 0.8em;
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+        .awaiting-text.active-red {
+            color: #dc2626; /* Display active awaiting rows in Red */
         }
 
-        /* Button styling: centered rounded rectangle, light gray fill, thin blue outline */
-        .btn-container {
+        .btn-group {
             display: flex;
-            justify-content: center;
+            gap: 8px;
             width: 100%;
         }
+        /* View link: centered, rounded rectangle, backfilled light gray, thin blue outline */
         .btn {
-            display: inline-block;
+            flex-grow: 1;
             text-align: center;
-            background: var(--bg-color); /* Light gray backfill matching system bg */
+            background: #f3f4f6;
             color: var(--primary);
-            border: 1px solid var(--primary); /* Thin blue outline */
-            padding: 8px 24px;
-            border-radius: 20px; /* Fully rounded capsule/rectangle shape */
+            border: 1px solid var(--primary);
+            padding: 8px 12px;
+            border-radius: 20px;
             text-decoration: none;
             font-weight: 500;
             font-size: 0.9em;
             transition: all 0.2s ease;
-            width: 80%; /* Centers and limits width inside the cell area */
         }
         .btn:hover { background: var(--primary); color: white; }
+
+        /* Secondary Absolute URL Clipboard Button Layout */
+        .copy-btn {
+            background: #f3f4f6;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 8px 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .copy-btn:hover { background: var(--border); }
+        .copy-btn svg { width: 16px; height: 16px; fill: var(--text-muted); }
     </style>
 </head>
 <body>
@@ -145,15 +162,22 @@
         <header>
             <h1>Raffle Listings Dashboard</h1>
             <p>Note: this page links fail if used on phone that has Facebook App installed. Works on PC with Win os.</p>
-            <p>Track prizes, dates, and active listings links</p>
+            <p>Track prizes, dates, and active listings links (auto refresh every 10 minutes)</p>
+            <p class="instructions">Click any "Awaiting details..." or "Active Raffle awaiting details..." element to override last known raffle ID and generate missing numbers instantly.</p>
         </header>
 
-        <!-- Dynamic Grid Container -->
+        <!-- Realtime Instant Live Filter Input Container -->
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-input" placeholder="Search by Raffle ID or description...">
+            <button id="clearSearch" class="clear-btn">Clear</button>
+        </div>
+
+        <!-- Render Target Target Grid Output Component -->
         <div class="grid" id="raffleGrid"></div>
     </div>
 
-    <!-- Embedded CSV Data Container -->
-    <script id="csvData" type="text/csv">
+    <!-- Raw Data Storage Segment Structured in CSV Pattern Inside Code Block -->
+    <pre id="csvData" style="display:none;">
 5229, 6/5/26, Pick 1 Choice (Value of $150.00)
 5230, 6/5/26, PlayStation 5 Package (Console, Twin Charging Station, Cooling Stand)
 5231, 6/5/26, LETS PICK 1 ONLY VALUE OF $150.00
@@ -200,100 +224,198 @@
 5272,6/16/26,3 - 1 oz Silver Coins
 5273,6/16/26,LETS PICK 1. VALUE OF $150.00
 5274,6/17/26,$150.00 IN $10 LOTTERY TICKETS
-5275
-5276
-5277
-5278
-5279
-5280
-5281
-</script>
-
+</pre>
     <script>
-        // Constant URL prefix configuration
-        const FB_SEARCH_BASE_URL = "https://www.facebook.com/profile/100064817680090/search/?q=";
+        // Core Isolated Target Constants String Values
+        const BASE_FB_URL = "https://facebook.com";
 
-        // Fetch and process raw CSV layout
-        const rawCsv = document.getElementById('csvData').textContent.trim();
-        const rows = rawCsv.split('\n');
+        // Target Variable Configuration Rule Assignment
+        let last_known_raffle = null;
 
-        let raffles = [];
+        // Auto pull override data properties from client machine persistent memory
+        if (localStorage.getItem('user_last_known_raffle')) {
+            last_known_raffle = parseInt(localStorage.getItem('user_last_known_raffle'), 10);
+        }
 
-        // Parse rows into structural array data
-        rows.forEach(row => {
-            if (!row) return;
-            const columns = row.split(',');
+        // CSV parsing engine matching Raffle_id, Date, Prize arrangement
+        function parseCSVData() {
+            const csvText = document.getElementById('csvData').textContent.trim();
+            const lines = csvText.split('\n');
+            let parsedData = [];
 
-            let raffleId = columns[0] ? columns[0].trim() : '';
-            let date = columns[1] ? columns[1].trim() : '';
-            let prize = columns[2] ? columns[2].trim() : '';
+            lines.forEach(line => {
+                if (!line.trim()) return;
+                const parts = line.split(',');
+                const raffle_id = parseInt(parts[0].trim(), 10);
 
-            // Fallback logic check if only the Raffle_id field exists
-            if (raffleId && !date && !prize) {
-                date = "TBD";
-                prize = "Awaiting details...";
-            }
+                // Route dynamic fallbacks if only first element (Raffle_id) presents data
+                const date_val = parts[1] ? parts[1].trim() : "TBD";
+                const prize_val = parts[2] ? parts[2].trim() : "Awaiting details...";
 
-            if (raffleId) {
-                raffles.push({ raffleId, date, prize });
-            }
-        });
+                parsedData.push({
+                    raffle_id: raffle_id,
+                    date: date_val,
+                    prize: prize_val,
+                    type: 'standard'
+                });
+            });
+            return parsedData;
+        }
 
-        // Sort descending based on numeric parsing of the Raffle_id
-        raffles.sort((a, b) => parseInt(b.raffleId) - parseInt(a.raffleId));
+        // Dataset expansion router rules engine
+        function processAndGenerateDataset() {
+            let data = parseCSVData();
 
-        // Generate card layout loop structure
-        const gridContainer = document.getElementById('raffleGrid');
+            // Temporary ascending sort operation to extract current system math properties
+            data.sort((a, b) => a.raffle_id - b.raffle_id);
+            const highest_data_raffle = data.length > 0 ? data[data.length - 1].raffle_id : 0;
 
-        raffles.forEach(raffle => {
-            const card = document.createElement('div');
-            card.className = 'card';
-
-            // Generate structural components
-            const cardHeader = document.createElement('div');
-            cardHeader.className = 'card-header';
-
-            // Append leading # to the Raffle ID badge value
-            const badge = document.createElement('span');
-            badge.className = 'badge';
-            badge.textContent = `#${raffle.raffleId}`;
-
-            const dateSpan = document.createElement('span');
-            dateSpan.className = 'date';
-            dateSpan.textContent = raffle.date;
-
-            cardHeader.appendChild(badge);
-            cardHeader.appendChild(dateSpan);
-
-            const prizeDiv = document.createElement('div');
-            prizeDiv.className = 'prize';
-
-            // Format fallback text dynamically if conditions fit matching rule criteria
-            if (raffle.prize === "Awaiting details...") {
-                prizeDiv.innerHTML = `<span class="pending">Awaiting details...</span>`;
+            // Branch evaluations matching scenario instructions criteria
+            if (last_known_raffle !== null && last_known_raffle > highest_data_raffle) {
+                // Generate sequential rows up to and including custom machine ceiling
+                for (let i = highest_data_raffle + 1; i <= last_known_raffle; i++) {
+                    data.push({
+                        raffle_id: i,
+                        date: "TBD",
+                        prize: "Active Raffle awaiting details...",
+                        type: 'active_awaiting'
+                    });
+                }
+                // Append exactly 7 secondary fallback tracking items out beyond bound
+                for (let i = last_known_raffle + 1; i <= last_known_raffle + 7; i++) {
+                    data.push({
+                        raffle_id: i,
+                        date: "TBD",
+                        prize: "Awaiting details...",
+                        type: 'placeholder'
+                    });
+                }
             } else {
-                prizeDiv.textContent = raffle.prize;
+                // Handling routine mapping when last_known_raffle evaluates as null
+                const baseCeiling = Math.max(highest_data_raffle, last_known_raffle || 0);
+                for (let i = baseCeiling + 1; i <= baseCeiling + 7; i++) {
+                    data.push({
+                        raffle_id: i,
+                        date: "TBD",
+                        prize: "Awaiting details...",
+                        type: 'placeholder'
+                    });
+                }
             }
 
-            const btnContainer = document.createElement('div');
-            btnContainer.className = 'btn-container';
+            // Enforce mandatory strict descending sorting layout array orientation
+            data.sort((a, b) => b.raffle_id - a.raffle_id);
+            return data;
+        }
+        // UI Layout Renderer & Event Engine Compiler
+        function renderDashboard(filterText = '') {
+            const targetDataset = processAndGenerateDataset();
+            const gridContainer = document.getElementById('raffleGrid');
+            gridContainer.innerHTML = '';
 
-            const linkElement = document.createElement('a');
-            // Swap runtime variables safely inside code block logic loop
-            linkElement.href = `${FB_SEARCH_BASE_URL}${raffle.raffleId}`;
-            linkElement.target = '_blank';
-            linkElement.className = 'btn';
-            linkElement.textContent = 'View Link';
+            const cleanFilter = filterText.toLowerCase().trim();
 
-            btnContainer.appendChild(linkElement);
+            targetDataset.forEach(item => {
+                // Search condition validation matrix
+                const matchesId = item.raffle_id.toString().includes(cleanFilter);
+                const matchesPrize = item.prize.toLowerCase().includes(cleanFilter);
+                if (cleanFilter && !matchesId && !matchesPrize) return;
 
-            // Assemble components inside card frame context module
-            card.appendChild(cardHeader);
-            card.appendChild(prizeDiv);
-            card.appendChild(btnContainer);
+                // Create structural block card element
+                const card = document.createElement('div');
+                card.className = 'card';
 
-            gridContainer.appendChild(card);
+                const cardHeader = document.createElement('div');
+                cardHeader.className = 'card-header';
+
+                const badge = document.createElement('span');
+                badge.className = 'badge';
+                badge.textContent = `#${item.raffle_id}`; // Appends requested leading character hash symbol
+
+                const dateSpan = document.createElement('span');
+                dateSpan.className = 'date';
+                dateSpan.textContent = item.date;
+
+                cardHeader.appendChild(badge);
+                cardHeader.appendChild(dateSpan);
+
+                const prizeDiv = document.createElement('div');
+                prizeDiv.className = 'prize';
+
+                // Check formatting tags matching textual conditions states
+                if (item.prize === "Awaiting details...") {
+                    prizeDiv.innerHTML = `<span class="awaiting-text" onclick="handleOverride(${item.raffle_id})">Awaiting details...</span>`;
+                } else if (item.prize === "Active Raffle awaiting details...") {
+                    prizeDiv.innerHTML = `<span class="awaiting-text active-red" onclick="handleOverride(${item.raffle_id})">Active Raffle awaiting details...</span>`;
+                } else {
+                    prizeDiv.textContent = item.prize;
+                }
+
+                const btnGroup = document.createElement('div');
+                btnGroup.className = 'btn-group';
+
+                const viewLink = document.createElement('a');
+                viewLink.href = `${BASE_FB_URL}${item.raffle_id}`;
+                viewLink.target = "_blank";
+                viewLink.className = "btn";
+                viewLink.textContent = "View Link";
+
+                // Absolute shareable URL link clipboard copy operation block
+                const copyBtn = document.createElement('button');
+                copyBtn.className = 'copy-btn';
+                copyBtn.title = 'Copy Absolute Link';
+                copyBtn.innerHTML = `
+                    <svg viewBox="0 0 24 24">
+                        <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                    </svg>
+                `;
+                copyBtn.onclick = () => {
+                    const fullUrl = `${BASE_FB_URL}${item.raffle_id}`;
+                    navigator.clipboard.writeText(fullUrl).then(() => {
+                        alert(`Copied link for Raffle #${item.raffle_id} to clipboard!`);
+                    }).catch(err => {
+                        console.error('Failed to write string data: ', err);
+                    });
+                };
+
+                btnGroup.appendChild(viewLink);
+                btnGroup.appendChild(copyBtn);
+
+                card.appendChild(cardHeader);
+                card.appendChild(prizeDiv);
+                card.appendChild(btnGroup);
+
+                gridContainer.appendChild(card);
+            });
+        }
+
+        // Live Overriding Logic Event Flow Route Rules
+        window.handleOverride = function(clickedId) {
+            const rawData = parseCSVData();
+            rawData.sort((a, b) => a.raffle_id - b.raffle_id);
+            const highest_data_raffle = rawData.length > 0 ? rawData[rawData.length - 1].raffle_id : 0;
+
+            // Trigger re-processing calculation routine parameters if clicked target boundaries check out
+            if (clickedId > highest_data_raffle || (last_known_raffle !== null && clickedId > last_known_raffle)) {
+                last_known_raffle = clickedId;
+                localStorage.setItem('user_last_known_raffle', clickedId);
+                // Reprocess dataset contents view with search conditions preserved
+                renderDashboard(document.getElementById('searchInput').value);
+            }
+        };
+
+        // UI Target Triggers Event Listeners
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            renderDashboard(e.target.value);
         });
+
+        document.getElementById('clearSearch').addEventListener('click', () => {
+            document.getElementById('searchInput').value = '';
+            renderDashboard();
+        });
+
+        // Initialize Rendering Engine Execution Loop on First Thread Load
+        renderDashboard();
     </script>
 </body>
 </html>
